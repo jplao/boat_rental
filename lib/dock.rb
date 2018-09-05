@@ -29,7 +29,10 @@ class Dock
 
   def revenue
     @boats_rented.sum do |boat|
-      boat.price_per_hour * boat.hours_rented
+      if boat.hours_rented > max_rental_time
+        boat.price_per_hour * max_rental_time
+      else boat.price_per_hour * boat.hours_rented
+      end 
     end
   end
 end
