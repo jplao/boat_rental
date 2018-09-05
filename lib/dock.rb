@@ -32,7 +32,13 @@ class Dock
       if boat.hours_rented > max_rental_time
         boat.price_per_hour * max_rental_time
       else boat.price_per_hour * boat.hours_rented
-      end 
+      end
+    end
+  end
+
+  def charges
+    @boats_rented.group_by do |renter|
+      renter[:credit_card_number]
     end
   end
 end
