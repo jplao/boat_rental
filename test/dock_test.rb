@@ -98,7 +98,7 @@ class DockTest < Minitest::Test
     assert_equal 105, dock.revenue
   end
 
-  def test_dock_can_calculate_revenue
+  def test_dock_can_calculate_revenue_with_boats_returned
     dock = Dock.new("The Rowing Dock", 3)
     kayak_1 = Boat.new(:kayak, 20)
     kayak_2 = Boat.new(:kayak, 20)
@@ -112,6 +112,9 @@ class DockTest < Minitest::Test
     dock.log_hour
     dock.rent(canoe, patrick)
     dock.log_hour
+    dock.return(kayak_1)
+    dock.return(kayak_2)
+    dock.return(canoe)
     dock.rent(sup_1, eugene)
     dock.rent(sup_2, eugene)
     dock.log_hour
@@ -126,6 +129,7 @@ class DockTest < Minitest::Test
   end
 
   def test_dock_can_charge_card_for_hours_rented   dock = Dock.new("The Rowing Dock", 3)
+    skip
     kayak_1 = Boat.new(:kayak, 20)
     kayak_2 = Boat.new(:kayak, 20)
     canoe = Boat.new(:canoe, 25)
